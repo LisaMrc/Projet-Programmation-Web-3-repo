@@ -24,6 +24,12 @@ export default function App() {
           breed="Golden Retriever"
           pictureUrl="https://cdn.pixabay.com/photo/2023/11/30/15/49/dog-8421955_640.jpg"
         />
+        <DogCard 
+          name="Ciboulette"
+          age={undefined}
+          breed="Bernese Mountain Dog"
+          pictureUrl="https://media.istockphoto.com/id/184137526/fr/photo/chien-sur-lherbe.jpg?s=1024x1024&w=is&k=20&c=eygQDTdV2gvZ-814rajQWIgqMlJd-nSlBhEeE-cQSd8="
+        />
       </div>
     </div>
   );

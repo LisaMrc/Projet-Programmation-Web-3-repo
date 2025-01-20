@@ -1,6 +1,6 @@
-import "./DogCard.css";
+import './DogCard.css'
 
-export default function DogCard({ name, age, breed, pictureUrl }) {
+export default function DogCard({ pictureUrl, name, age, breed }) {
   return (
     <div id="dog-card">
       <img
@@ -10,7 +10,10 @@ export default function DogCard({ name, age, breed, pictureUrl }) {
       />
       <div id="dog-description">
         <h3>{name}</h3>
-        <p className="dog-description-line">Age: {age} years</p>
+        {
+          age !== undefined && 
+          <p className="dog-description-line">Age: {age} years</p> 
+        }
         <p className="dog-description-line">Breed: {breed}</p>
       </div>
     </div>
