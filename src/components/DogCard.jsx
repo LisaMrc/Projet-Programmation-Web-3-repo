@@ -1,4 +1,3 @@
-/* App.jsx */
 import "./DogCard.css";
 
 export default function DogCard({ name, age, breed, pictureUrl }) {
