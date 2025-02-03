@@ -20,7 +20,7 @@ export default function Navbar
                 <i class="fa-solid fa-heart"></i>
                 <i class="fa-solid fa-shuffle"></i>
                 <i class="fa-solid fa-basket-shopping"></i>
-                <button class="icon">👤</button>
+                <i><a class="profile-pic"><img src="assets/pfps/Otter_One.jpg" alt="your profile picture" class="logo"></img></a></i>
             </div>
         </nav>
     );

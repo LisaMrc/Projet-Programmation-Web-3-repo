@@ -6,8 +6,21 @@ import DogCard from "./components/DogCard";
 import Navbar from "./components/Navbar";
 
 export default function App() {
-  const [search, setSearch] = useState("");
-  const [dogsSortBy, setDogsSortBy] = useState("age");
+  const [search, setSearch] = useState(
+    localStorage.getItem("search") || ""
+  );
+
+  const [dogsSortBy, setDogsSortBy] = useState(
+    localStorage.getItem("search") || "age"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("search", search)
+  }, [search])
+
+  useEffect(() => {
+    localStorage.setItem("dogsSortBy", dogsSortBy)
+  }, [dogsSortBy])
 
   const filteredDogsData = useMemo(() => {
     let result = dogsData.filter((dog) =>
