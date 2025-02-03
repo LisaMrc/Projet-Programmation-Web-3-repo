@@ -1,18 +1,22 @@
 import './DogCard.css'
 
-export default function DogCard({ 
+export default function DogCard
+({ 
     name,
     age,
     breed,
     pictureUrl,
     soundUrl
-  }) {
+})
+
+{
   const audio = new Audio(soundUrl)
 
-  const playDogSound = () => {
-    audio.currentTime = 0
-    audio.play()
-  }
+  const playDogSound = () => 
+    {
+        audio.currentTime = 0
+        audio.play()
+    }
 
   return (
     <div id="dog-card">

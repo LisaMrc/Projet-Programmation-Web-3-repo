@@ -1,8 +1,9 @@
 import "./App.css";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect} from "react";
 import dogsData from "./dogsData";
 import NewsSlider from "./components/NewsSlider";
 import DogCard from "./components/DogCard";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -26,7 +27,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>Dog Center</h1>
+      <Navbar />
       <NewsSlider />
       <div id="gallery-options">
         <input

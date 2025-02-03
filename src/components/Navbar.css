@@ -1,0 +1,56 @@
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .hamburger {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .logo {
+    height: 2rem;
+    padding-left: 2rem;
+  }
+  
+  .navbar-middle {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon {
+    font-size: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
