@@ -1,6 +1,8 @@
-import "./App.css";
 import { useState, useMemo, useEffect} from "react";
-import dogsData from "./dogsData";
+
+import "./App.css";
+
+import dogsData from "./data/dogsData";
 import NewsSlider from "./components/NewsSlider";
 import DogCard from "./components/DogCard";
 import Navbar from "./components/Navbar";
@@ -43,12 +45,23 @@ export default function App() {
       <Navbar />
       <NewsSlider />
       <div id="gallery-options">
+        <h2>Recipes</h2>
+        <h3>Filter on what you like</h3>
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search dog"
         />
+        <label htmlFor="dog-sort">Sort by : </label>
+        <select
+          id="dog-sort"
+          value={dogsSortBy}
+          onChange={(e) => setDogsSortBy(e.target.value)}
+        >
+          <option value="age">Age</option>
+          <option value="name">Name</option>
+        </select>
         <label htmlFor="dog-sort">Sort by : </label>
         <select
           id="dog-sort"

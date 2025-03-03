@@ -1,5 +1,5 @@
 import { useState } from "react";
-import newsData from "../newsData.js";
+import newsData from "../data/newsData.js";
 
 export default function NewsSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);

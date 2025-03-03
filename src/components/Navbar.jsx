@@ -6,22 +6,25 @@ export default function Navbar
 })
     
 {
-    // Dynamic / files
-
     return (
         <nav class="navbar">
             <div class="navbar-left">
-                <img src="assets/Logo.png" alt="Morfale Logo" class="logo"></img>
-            </div>
-            <div class="navbar-middle">
-                <input type="text" placeholder="You're hungry ?" class="search-bar"></input>
+                <img src="assets/Icons/favicon.svg" alt="Morfale Logo" class="logo"></img>
             </div>
             <div class="navbar-right">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-shuffle"></i>
-                <i class="fa-solid fa-basket-shopping"></i>
-                <i><a class="profile-pic"><img src="assets/pfps/Otter_One.jpg" alt="your profile picture" class="logo"></img></a></i>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Favorite recipes</span>
+                    <img src="assets/Icons/heart.svg" alt="Heart Icon"></img>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Random meals</span>
+                    <img src="assets/Icons/repeat.svg" alt="Shuffle Icon"></img>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Around the world</span>
+                    <img src="assets/Icons/map.svg" alt="Map Icon"></img>
+                </a>
             </div>
-        </nav>
+</nav>
     );
 };
