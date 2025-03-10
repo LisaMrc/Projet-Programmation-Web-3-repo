@@ -15,6 +15,11 @@
         url('../assets/Fonts/Quicksand/Quicksand-VariableFont_wght.ttf')
 }
 
+body
+{
+    font-family: 'Quicksand';
+}
+
 #dog-gallery {
     display: flex;
     flex: wrap;
@@ -66,29 +71,6 @@ header {
     align-items: center;
     padding: 2rem 0;
     position: relative;
-}
-
-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem 0;
-}
-
-footer a {
-    color: #575757;
-    font-weight: 600;
-    font-size: 16px;
-
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-footer p {
-    color: #94a3b8;
-    font-weight: 500;
 }
 
 .header-logo {
@@ -149,7 +131,6 @@ footer p {
 .button-game {
     margin-top: auto;
 }
-
 
 .button-purple {
     background-color: transparent;
@@ -385,8 +366,6 @@ ul
     animation-duration: 0.4s
 }
 
-
-
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
@@ -403,7 +382,6 @@ ul
     font-size: 1.8rem;
 }
 
-
 .screenshots-grid-wrapper {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -417,13 +395,6 @@ ul
     border-radius: 1rem;
 }
 
-
-#burger-icon {
-    width: 28px;
-    height: 28px;
-    display: none;
-}
-
 .hidden {
     display: none;
 }
@@ -431,7 +402,6 @@ ul
 .flex {
     display: flex;
 }
-
 
 .see-more {
     background-color: transparent;
@@ -448,23 +418,6 @@ ul
 
 .centered-div {
     text-align: center;
-}
-
-
-
-footer a {
-    color: #575757;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-footer p {
-    color: #94a3b8;
-    font-weight: 500;
 }
 
 /* Responsive part */

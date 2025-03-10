@@ -6,6 +6,7 @@ import dogsData from "./data/dogsData";
 import NewsSlider from "./components/NewsSlider";
 import DogCard from "./components/DogCard";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [search, setSearch] = useState(
@@ -84,6 +85,7 @@ export default function App() {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
