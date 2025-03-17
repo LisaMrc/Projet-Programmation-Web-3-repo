@@ -13,7 +13,7 @@ export default function App() {
   const [search, setSearch] = useState(localStorage.getItem("search") || "");
 
   const [dogsSortBy, setDogsSortBy] = useState(
-    localStorage.getItem("search") || "age"
+    localStorage.getItem("search") || "id"
   );
 
   useEffect(() => {
@@ -29,9 +29,9 @@ export default function App() {
       dog.name.toLowerCase().includes(search.toLowerCase())
     );
     result = result.toSorted((a, b) => {
-      if (dogsSortBy === "age") {
+      if (dogsSortBy === "id") {
         // age can be null
-        return (a.age || 0) - (b.age || 0);
+        return (a.id || 0) - (b.id || 0);
       } else {
         // sort in alphabetical order
         return a.name.localeCompare(b.name);
@@ -53,38 +53,28 @@ export default function App() {
       />
 
       <div id="gallery-options">
-        <label htmlFor="dog-sort">Sort by : </label>
         <select
           id="dog-sort"
           value={dogsSortBy}
           onChange={(e) => setDogsSortBy(e.target.value)}
         >
-          <option value="age">Age</option>
-          <option value="name">Name</option>
-        </select>
-
-        <label htmlFor="dog-sort">Sort by : </label>
-        <select
-          id="dog-sort"
-          value={dogsSortBy}
-          onChange={(e) => setDogsSortBy(e.target.value)}
-        >
-          <option value="age">Age</option>
-          <option value="name">Name</option>
+          <option value="id">Sort by latest</option>
+          <option value="name">Sort by </option>
         </select>
       </div>
+
       <div id="dog-gallery">
         {filteredDogsData.map((dog) => (
           <DogCard
             key={dog.id}
             name={dog.name}
-            age={dog.age}
             breed={dog.breed}
             pictureUrl={dog.pictureUrl}
             soundUrl={dog.soundUrl}
           />
         ))}
       </div>
+
       <NewsSlider />
       <Footer />
     </div>

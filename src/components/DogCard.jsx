@@ -28,11 +28,10 @@ export default function DogCard
       <div id="dog-description">
         <h3>{name}</h3>
         { 
-          age && 
-          <p className="dog-description-line">Age: {age} years</p> 
+          breed && 
+          <p className="dog-description-line">Age: {breed} years</p> 
         }
         <p className="dog-description-line">Breed: {breed}</p>
-        <button onClick={playDogSound}>Listen</button>
       </div>
     </div>
   );
