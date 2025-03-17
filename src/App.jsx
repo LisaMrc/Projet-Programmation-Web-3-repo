@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect} from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import "./App.css";
 
@@ -7,23 +7,22 @@ import NewsSlider from "./components/NewsSlider";
 import DogCard from "./components/DogCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 export default function App() {
-  const [search, setSearch] = useState(
-    localStorage.getItem("search") || ""
-  );
+  const [search, setSearch] = useState(localStorage.getItem("search") || "");
 
   const [dogsSortBy, setDogsSortBy] = useState(
     localStorage.getItem("search") || "age"
   );
 
   useEffect(() => {
-    localStorage.setItem("search", search)
-  }, [search])
+    localStorage.setItem("search", search);
+  }, [search]);
 
   useEffect(() => {
-    localStorage.setItem("dogsSortBy", dogsSortBy)
-  }, [dogsSortBy])
+    localStorage.setItem("dogsSortBy", dogsSortBy);
+  }, [dogsSortBy]);
 
   const filteredDogsData = useMemo(() => {
     let result = dogsData.filter((dog) =>
@@ -44,16 +43,16 @@ export default function App() {
   return (
     <div>
       <Navbar />
-      <NewsSlider />
+      <Header />
+
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search a meal..."
+      />
+
       <div id="gallery-options">
-        <h2>Recipes</h2>
-        <h3>Filter on what you like</h3>
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search dog"
-        />
         <label htmlFor="dog-sort">Sort by : </label>
         <select
           id="dog-sort"
@@ -63,6 +62,7 @@ export default function App() {
           <option value="age">Age</option>
           <option value="name">Name</option>
         </select>
+
         <label htmlFor="dog-sort">Sort by : </label>
         <select
           id="dog-sort"
@@ -85,6 +85,7 @@ export default function App() {
           />
         ))}
       </div>
+      <NewsSlider />
       <Footer />
     </div>
   );

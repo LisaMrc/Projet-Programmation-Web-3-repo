@@ -1,10 +1,8 @@
-/* App.css */
-
 :root {
     --morfale-red:#aa0000;
     --morfale-blue:#09758b;
     --morfale-yellow: #d3b037;
-    --ligh-gray:#dcdcdc;
+    --light-gray:#F3F4F6;
 }
 
 @font-face 
@@ -15,9 +13,48 @@
         url('../assets/Fonts/Quicksand/Quicksand-VariableFont_wght.ttf')
 }
 
+@font-face 
+{
+    font-family: Momcake-Bold;
+    src:
+        local(Momcake-Bold),
+        url('../assets/Fonts/Momcake-Bold.otf')
+}
+
 body
 {
     font-family: 'Quicksand';
+}
+
+a
+{
+    text-decoration: none;
+    color:black;
+}
+
+h1
+{
+    font-family: 'Momcake-Bold';
+    font-weight: normal;
+    font-size: 64px;
+    margin: 0;
+}
+
+h2 
+{
+    font-family: 'Quicksand';
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+input
+{
+    font-family: 'Quicksand';
+    background-color: var(--light-gray);
+    border-width:0px;
+    padding: .7rem 10rem .7rem 1rem;
+    border-radius: 1rem;
 }
 
 #dog-gallery {
@@ -30,32 +67,6 @@ body
     font-family: Quicksand;
   }
 
-a
-{
-    text-decoration: none;
-    color:black;
-}
-
-h1
-{
-    font-family: 'Königsberg';
-    font-weight: normal;
-    font-size: 64px;
-    margin: 0;
-}
-
-h2 
-{
-    font-family: 'Königsberg';
-    font-weight: normal;
-    font-size: 2em;
-    padding-top: 4rem;
-}
-
-main {
-    margin: 4rem 0;
-}
-
 button
 {
     border:0px;
@@ -63,48 +74,6 @@ button
     cursor:pointer;
     font-family: 'Quicksand';
     font-weight:bold;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 0;
-    position: relative;
-}
-
-.header-logo {
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: 'Königsberg';
-    font-size: 32px;
-}
-
-.header-logo img {
-    width: 100%;
-    max-width: 48px;
-    margin-right: 16px;
-}
-
-.main-menu-wrap {
-    display: flex;
-    align-items: center;
-}
-
-.main-menu > *:not(:last-child) {
-    margin-right: 32px;
-}
-
-.main-menu a {
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.main-menu a:hover {
-    color: #ef0f34;
-    transition: 0.4s;
 }
 
 .button-primary {
@@ -128,7 +97,7 @@ header {
     margin-top: 12px;
 }
 
-.button-game {
+.button-meal {
     margin-top: auto;
 }
 
@@ -163,38 +132,6 @@ header {
     transition: background 0.4s ease;
 }
 
-.filter-container {
-    margin: 1rem 0 2rem 0;
-}
-
-.head
-{
-    padding: 4rem;
-    margin: 4rem 0;
-    text-align: center;
-    background: #ef0f34;
-    color: white;
-    font-size: 30px;
-    border-radius: 2rem;
-
-    @media screen and (max-width: 480px) 
-    {
-        padding: 2rem;
-        margin:0rem;
-        font-size: 1rem;
-    }
-}
-
-.image-head
-{
-    max-width: 10%;
-
-    @media screen and (max-width: 480px) 
-    {
-        max-width: 40%;
-    }
-}
-
 .subtitle 
 {
     font-size: 2rem;
@@ -206,7 +143,7 @@ header {
     }
 }
 
-.game {
+.meal {
 
     padding:1rem;
     display: flex;
@@ -214,39 +151,39 @@ header {
     cursor: pointer;
 }
 
-.game-row {
+.meal-row {
     flex-direction: column;
     height: 100%;
 }
 
-.game-wrapper {
+.meal-wrapper {
     background-color:#F3F4F6;
     border-radius: 2rem;
     transition: background 0.4s ease;
 }
 
-.game-wrapper:hover {
+.meal-wrapper:hover {
     background-color:#ccc;
 
 }
 
-.game-grid-wrapper {
+.meal-grid-wrapper {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1rem;
 }
 
-.game img {
+.meal img {
     border-radius: 1rem;
 }
 
-.game-grid-wrapper {
+.meal-grid-wrapper {
     width: 100%;
     object-fit: cover;
 
 }
 
-.game-grid-wrapper img {
+.meal-grid-wrapper img {
     width: 100%;
     object-fit: cover;
     height: 226px;
@@ -257,31 +194,22 @@ header {
     flex-direction: row;
 }
 
-.game-title {
+.meal-title {
     padding: 0.5rem 0;
     font-size: 16px;
 }
 
-ul 
-{
-    list-style-type: none;
-    padding:0;
-    margin:0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.game-feature
+.meal-feature
 {
     margin:0 0 0.5rem 0;
     font-weight: 600;
 }
 
-.game-feature-wrapper {
+.meal-feature-wrapper {
     margin-top: 16px
 }
 
-.game-feature-title {
+.meal-feature-title {
     color: #94A3B8;
     padding: 0;
     margin: 0;
@@ -300,126 +228,6 @@ ul
     animation: rotation 1s linear infinite;
 }
 
-.main-menu-mobile {
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 150px;
-
-    margin-top: 250px ;
-    background-color: #f3f4f6;
-    border-radius: 18px;
-    box-shadow: 0px 0px 59px 75px rgba(0,0,0,0.4);
-}
-
-.main-menu-mobile ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
-}
-
-
-.main-menu-mobile a {
-    font-weight: 600;
-    font-size: 16px;
-    padding: 16px;
-}
-
-@keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-#modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll !important;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-/* Modal Content */
-#modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    border: 1px solid #888;
-    width: 40%;
-    border-radius:1rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-/* Titre plus gros dans le modal */
-#modal-content h3 {
-    font-size: 1.8rem;
-}
-
-.screenshots-grid-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-    width: 100%;
-    margin-top: 8px;
-}
-
-.screenshots-grid-wrapper img {
-    width:  100%;
-    border-radius: 1rem;
-}
-
-.hidden {
-    display: none;
-}
-
-.flex {
-    display: flex;
-}
-
-.see-more {
-    background-color: transparent;
-    color:#cccccc;
-    border: solid #cccccc;
-    margin: 2rem auto auto;
-}
-
-#see-more:hover {
-    background-color: #cccccc;
-    color:white;
-    transition: .4s;
-}
-
-.centered-div {
-    text-align: center;
-}
-
 /* Responsive part */
 @media screen and (max-width: 1024px) {
     main {
@@ -434,11 +242,11 @@ ul
         font-size: 44px;
     }
 
-    .game-grid-wrapper {
+    .meal-grid-wrapper {
         grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colonnes pour des écrans plus petits */
     }
 
-    .game img {
+    .meal img {
         height: 180px;
     }
 
