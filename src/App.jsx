@@ -1,45 +1,38 @@
-import { useState, useMemo, useEffect } from "react";
-
 import "./App.css";
-
-import dogsData from "./data/dogsData";
+import { useState, useMemo, useEffect } from "react";
+import MealsData from "./data/MealsData";
 import NewsSlider from "./components/NewsSlider";
-import DogCard from "./components/DogCard";
+import MealCard from "./components/MealCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 export default function App() {
-  const [search, setSearch] = useState(localStorage.getItem("search") || "");
-
-  const [dogsSortBy, setDogsSortBy] = useState(
-    localStorage.getItem("search") || "id"
-  );
+  const [search, setSearch] = useState("");
+  const [mealsSortBy, setMealsSortBy] = useState("idMeal");
 
   useEffect(() => {
     localStorage.setItem("search", search);
   }, [search]);
 
   useEffect(() => {
-    localStorage.setItem("dogsSortBy", dogsSortBy);
-  }, [dogsSortBy]);
+    localStorage.setItem("mealsSortBy", mealsSortBy);
+  }, [mealsSortBy]);
 
-  const filteredDogsData = useMemo(() => {
-    let result = dogsData.filter((dog) =>
-      dog.name.toLowerCase().includes(search.toLowerCase())
-    );
-    result = result.toSorted((a, b) => {
-      if (dogsSortBy === "id") {
-        // age can be null
-        return (a.id || 0) - (b.id || 0);
-      } else {
-        // sort in alphabetical order
-        return a.name.localeCompare(b.name);
-      }
-    });
-    return result;
-  }, [dogsData, search, dogsSortBy]);
-
+  const filteredMealsData = useMemo(() => {
+    return MealsData.filter((meal) =>
+      meal.strMeal.toLowerCase().includes(search.toLowerCase())
+    )
+      .slice()
+      .sort((a, b) => {
+        if (mealsSortBy === "idMeal") {
+          return (a.idMeal || 0) - (b.idMeal || 0); // Sort by ID (ascending)
+        } else if (mealsSortBy === "strMeal") {
+          return a.strMeal.localeCompare(b.strMeal); // Sort alphabetically
+        }
+        return 0;
+      });
+  }, [search, mealsSortBy]);
   return (
     <div>
       <Navbar />
@@ -54,23 +47,23 @@ export default function App() {
 
       <div id="gallery-options">
         <select
-          id="dog-sort"
-          value={dogsSortBy}
-          onChange={(e) => setDogsSortBy(e.target.value)}
+          id="meal-sort"
+          value={mealsSortBy}
+          onChange={(e) => setMealsSortBy(e.target.value)}
         >
-          <option value="id">Sort by latest</option>
-          <option value="name">Sort by </option>
+          <option value="idMeal">Sort by latest</option>
+          <option value="strMeal">Sort by name</option>
         </select>
       </div>
 
-      <div id="dog-gallery">
-        {filteredDogsData.map((dog) => (
-          <DogCard
-            key={dog.id}
-            name={dog.name}
-            breed={dog.breed}
-            pictureUrl={dog.pictureUrl}
-            soundUrl={dog.soundUrl}
+      <div id="meal-gallery">
+        {filteredMealsData.map((meal) => (
+          <MealCard
+            key={meal.idMeal}
+            idMeal={meal.idMeal}
+            strMeal={meal.strMeal}
+            strArea={meal.strArea}
+            strMealThumb={meal.strMealThumb}
           />
         ))}
       </div>
