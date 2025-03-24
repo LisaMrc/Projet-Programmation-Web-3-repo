@@ -10,6 +10,7 @@ import Header from "./components/Header";
 export default function App() {
   const [search, setSearch] = useState("");
   const [mealsSortBy, setMealsSortBy] = useState("idMeal");
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("search", search);
@@ -19,20 +20,32 @@ export default function App() {
     localStorage.setItem("mealsSortBy", mealsSortBy);
   }, [mealsSortBy]);
 
+  const categories = [...new Set(MealsData.map((meal) => meal.strCategory))];
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
+
   const filteredMealsData = useMemo(() => {
     return MealsData.filter((meal) =>
-      meal.strMeal.toLowerCase().includes(search.toLowerCase())
+      meal.strMeal.toLowerCase().includes(search.toLowerCase()) &&
+      (selectedCategories.length === 0 || selectedCategories.includes(meal.strCategory))
     )
       .slice()
       .sort((a, b) => {
         if (mealsSortBy === "idMeal") {
-          return (a.idMeal || 0) - (b.idMeal || 0); // Sort by ID (ascending)
+          return (a.idMeal || 0) - (b.idMeal || 0);
         } else if (mealsSortBy === "strMeal") {
-          return a.strMeal.localeCompare(b.strMeal); // Sort alphabetically
+          return a.strMeal.localeCompare(b.strMeal);
         }
         return 0;
       });
-  }, [search, mealsSortBy]);
+  }, [search, mealsSortBy, selectedCategories]);
+
   return (
     <div>
       <Navbar />
@@ -54,6 +67,23 @@ export default function App() {
           <option value="idMeal">Sort by latest</option>
           <option value="strMeal">Sort by name</option>
         </select>
+      </div>
+
+      {/* Category Filter Dropdown */}
+      <div className="category-dropdown">
+        <button className="dropdown-button">Category ▼</button>
+        <div className="dropdown-content">
+          {categories.map((category) => (
+            <label key={category}>
+              <input
+                type="checkbox"
+                checked={selectedCategories.includes(category)}
+                onChange={() => handleCategoryChange(category)}
+              />
+              {category}
+            </label>
+          ))}
+        </div>
       </div>
 
       <div id="meal-gallery">
