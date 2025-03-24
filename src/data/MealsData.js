@@ -9,6 +9,7 @@ export default [
         "strMealThumb": "https://www.themealdb.com/images/media/meals/tnwy8m1628770384.jpg",
         "strTags": "Warming,Soup,Beans",
         "strYoutube": "https://www.youtube.com/watch?v=mrjnQal3S1A",
+        "ingredients": []
         "strIngredient1": "Cannellini Beans",
         "strIngredient2": "Vegetable Oil",
         "strIngredient3": "Tomatoes",

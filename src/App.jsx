@@ -11,6 +11,16 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [mealsSortBy, setMealsSortBy] = useState("idMeal");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedAreas, setSelectedAreas] = useState([]);
+
+
+  useEffect(() => {
+    const newMealData = []
+
+
+    setMealData(newMealData)
+    setCategories([...new Set(newMealData.map((meal) => meal.strCategory))])
+  }, [])
 
   useEffect(() => {
     localStorage.setItem("search", search);
@@ -21,6 +31,7 @@ export default function App() {
   }, [mealsSortBy]);
 
   const categories = [...new Set(MealsData.map((meal) => meal.strCategory))];
+  const areas = [...new Set(MealsData.map((meal) => meal.strArea))];
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
@@ -30,10 +41,18 @@ export default function App() {
     );
   };
 
+  const handleAreaChange = (area) => {
+    setSelectedAreas((prev) =>
+      prev.includes(area) ? prev.filter((a) => a !== area) : [...prev, area]
+    );
+  };
+
   const filteredMealsData = useMemo(() => {
-    return MealsData.filter((meal) =>
-      meal.strMeal.toLowerCase().includes(search.toLowerCase()) &&
-      (selectedCategories.length === 0 || selectedCategories.includes(meal.strCategory))
+    return MealsData.filter(
+      (meal) =>
+        meal.strMeal.toLowerCase().includes(search.toLowerCase()) &&
+        (selectedCategories.length === 0 || selectedCategories.includes(meal.strCategory)) &&
+        (selectedAreas.length === 0 || selectedAreas.includes(meal.strArea))
     )
       .slice()
       .sort((a, b) => {
@@ -44,7 +63,7 @@ export default function App() {
         }
         return 0;
       });
-  }, [search, mealsSortBy, selectedCategories]);
+  }, [search, mealsSortBy, selectedCategories, selectedAreas]);
 
   return (
     <div>
@@ -81,6 +100,23 @@ export default function App() {
                 onChange={() => handleCategoryChange(category)}
               />
               {category}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Area Filter Dropdown */}
+      <div className="area-dropdown">
+        <button className="dropdown-button">Area ▼</button>
+        <div className="dropdown-content">
+          {areas.map((area) => (
+            <label key={area}>
+              <input
+                type="checkbox"
+                checked={selectedAreas.includes(area)}
+                onChange={() => handleAreaChange(area)}
+              />
+              {area}
             </label>
           ))}
         </div>

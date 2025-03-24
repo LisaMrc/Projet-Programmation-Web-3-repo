@@ -289,3 +289,13 @@ button {
 .dropdown-content label {
   display: block;
 }
+
+.area-dropdown
+{
+    position: relative;
+    display: inline-block;
+}
+
+.area-dropdown:hover .dropdown-content {
+    display: block;
+  }
