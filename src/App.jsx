@@ -12,27 +12,29 @@ export default function App() {
   const [mealsSortBy, setMealsSortBy] = useState("idMeal");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedAreas, setSelectedAreas] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+  const [areas, setAreas] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
+  // Load unique categories, areas, and ingredients ONCE when the component mounts
   useEffect(() => {
-    const newMealData = []
+    setCategories([...new Set(MealsData.map((meal) => meal.strCategory))]);
+    setAreas([...new Set(MealsData.map((meal) => meal.strArea))]);
 
+    // Extract unique ingredients
+    const allIngredients = new Set();
+    MealsData.forEach((meal) => {
+      for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`]?.trim();
+        if (ingredient) allIngredients.add(ingredient);
+      }
+    });
+    setIngredients([...allIngredients].sort());
+  }, []);
 
-    setMealData(newMealData)
-    setCategories([...new Set(newMealData.map((meal) => meal.strCategory))])
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem("search", search);
-  }, [search]);
-
-  useEffect(() => {
-    localStorage.setItem("mealsSortBy", mealsSortBy);
-  }, [mealsSortBy]);
-
-  const categories = [...new Set(MealsData.map((meal) => meal.strCategory))];
-  const areas = [...new Set(MealsData.map((meal) => meal.strArea))];
-
+  // Handle category selection
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
@@ -41,35 +43,62 @@ export default function App() {
     );
   };
 
+  // Handle area selection
   const handleAreaChange = (area) => {
     setSelectedAreas((prev) =>
       prev.includes(area) ? prev.filter((a) => a !== area) : [...prev, area]
     );
   };
 
+  // Handle ingredient selection
+  const handleIngredientChange = (ingredient) => {
+    setSelectedIngredients((prev) =>
+      prev.includes(ingredient)
+        ? prev.filter((ing) => ing !== ingredient)
+        : [...prev, ingredient]
+    );
+  };
+
+  // Filter and sort meals
   const filteredMealsData = useMemo(() => {
-    return MealsData.filter(
-      (meal) =>
-        meal.strMeal.toLowerCase().includes(search.toLowerCase()) &&
-        (selectedCategories.length === 0 || selectedCategories.includes(meal.strCategory)) &&
-        (selectedAreas.length === 0 || selectedAreas.includes(meal.strArea))
-    )
-      .slice()
-      .sort((a, b) => {
-        if (mealsSortBy === "idMeal") {
-          return (a.idMeal || 0) - (b.idMeal || 0);
-        } else if (mealsSortBy === "strMeal") {
-          return a.strMeal.localeCompare(b.strMeal);
+    return MealsData.filter((meal) => {
+      // Extract meal ingredients
+      const mealIngredients = [];
+      for (let i = 1; i <= 20; i++) {
+        if (meal[`strIngredient${i}`]) {
+          mealIngredients.push(meal[`strIngredient${i}`].trim());
         }
-        return 0;
-      });
-  }, [search, mealsSortBy, selectedCategories, selectedAreas]);
+      }
+
+      return (
+        meal.strMeal.toLowerCase().includes(search.toLowerCase()) &&
+        (selectedCategories.length === 0 ||
+          selectedCategories.includes(meal.strCategory)) &&
+        (selectedAreas.length === 0 || selectedAreas.includes(meal.strArea)) &&
+        (selectedIngredients.length === 0 ||
+          selectedIngredients.every((ing) => mealIngredients.includes(ing)))
+      );
+    })
+      .slice()
+      .sort((a, b) =>
+        mealsSortBy === "idMeal"
+          ? (a.idMeal || 0) - (b.idMeal || 0)
+          : a.strMeal.localeCompare(b.strMeal)
+      );
+  }, [
+    search,
+    mealsSortBy,
+    selectedCategories,
+    selectedAreas,
+    selectedIngredients,
+  ]);
 
   return (
     <div>
       <Navbar />
       <Header />
 
+      {/* Search Input */}
       <input
         type="text"
         value={search}
@@ -77,6 +106,7 @@ export default function App() {
         placeholder="Search a meal..."
       />
 
+      {/* Sorting Dropdown */}
       <div id="gallery-options">
         <select
           id="meal-sort"
@@ -122,6 +152,20 @@ export default function App() {
         </div>
       </div>
 
+      {/* Ingredients Filter Dropdown */}
+<div className="ingredient-dropdown">
+  <button className="dropdown-button">Ingredients ▼</button>
+  <div className="dropdown-content ingredient-grid">
+    {ingredients.map((ingredient) => (
+      <label key={ingredient} className="ingredient-item">
+        <input type="checkbox" checked={selectedIngredients.includes(ingredient)} onChange={() => handleIngredientChange(ingredient)} />
+        {ingredient}
+      </label>
+    ))}
+  </div>
+</div>
+
+      {/* Meal Gallery */}
       <div id="meal-gallery">
         {filteredMealsData.map((meal) => (
           <MealCard
