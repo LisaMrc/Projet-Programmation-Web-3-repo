@@ -119,82 +119,67 @@ export default function App() {
       <Navbar />
       <Header />
 
-      {/* Search Input */}
+    <div className="filter-container">
       <input
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search a meal..."
       />
+    </div>
 
-      {/* Sorting Dropdown */}
-      <div id="gallery-options">
-        <select
-          id="meal-sort"
-          value={mealsSortBy}
-          onChange={(e) => setMealsSortBy(e.target.value)}
-        >
-          <option value="idMeal">Sort by latest</option>
-          <option value="strMeal">Sort by name</option>
-        </select>
-      </div>
-
-      {/* Category Filter Dropdown */}
-      <div className="category-dropdown">
-        <button className="dropdown-button">Category ▼</button>
-        <div className="dropdown-content">
-          {categories.map((category) => (
-            <label key={category}>
-              <input
-                type="checkbox"
-                checked={selectedCategories.includes(category)}
-                onChange={() => handleCategoryChange(category)}
-              />
-              {category}
-            </label>
-          ))}
+      <div className="filter-container">
+        <div className="category-dropdown">
+          <button className="dropdown-button">Category</button>
+          <div className="dropdown-content">
+            {categories.map((category) => (
+              <label key={category}>
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => handleCategoryChange(category)}
+                />
+                {category}
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Area Filter Dropdown */}
-      <div className="area-dropdown">
-        <button className="dropdown-button">Area ▼</button>
-        <div className="dropdown-content">
-          {areas.map((area) => (
-            <label key={area}>
-              <input
-                type="checkbox"
-                checked={selectedAreas.includes(area)}
-                onChange={() => handleAreaChange(area)}
-              />
-              {area}
-            </label>
-          ))}
+        <div className="area-dropdown">
+          <button className="dropdown-button">Area</button>
+          <div className="dropdown-content">
+            {areas.map((area) => (
+              <label key={area}>
+                <input
+                  type="checkbox"
+                  checked={selectedAreas.includes(area)}
+                  onChange={() => handleAreaChange(area)}
+                />
+                {area}
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Ingredients Filter Dropdown */}
-      <div className="ingredient-dropdown">
-        <button className="dropdown-button">Ingredients ▼</button>
-        <div className="dropdown-content ingredient-grid">
-          {ingredients.map((ingredient) => (
-            <label key={ingredient} className="ingredient-item">
-              <input
-                type="checkbox"
-                checked={selectedIngredients.includes(ingredient)}
-                onChange={() => handleIngredientChange(ingredient)}
-              />
-              {ingredient}
-            </label>
-          ))}
+        <div className="ingredient-dropdown">
+          <button className="dropdown-button">Ingredients</button>
+          <div className="dropdown-content">
+            {ingredients.map((ingredient) => (
+              <label key={ingredient} className="ingredient-item">
+                <input
+                  type="checkbox"
+                  checked={selectedIngredients.includes(ingredient)}
+                  onChange={() => handleIngredientChange(ingredient)}
+                />
+                {ingredient}
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Tags Filter Dropdown */}
-      <div className="tag-dropdown">
-        <button className="dropdown-button">Tags ▼</button>
-        <div className="dropdown-content">
-          <div className="tag-columns">
+        <div className="tag-dropdown">
+          <button className="dropdown-button">Tags</button>
+          <div className="dropdown-content">
             {tags.map((tag) => (
               <label key={tag} className="tag-item">
                 <input
@@ -206,6 +191,18 @@ export default function App() {
               </label>
             ))}
           </div>
+        </div>
+
+        <div id="gallery-options">
+          <select
+          className="dropdown-button"
+            id="meal-sort"
+            value={mealsSortBy}
+            onChange={(e) => setMealsSortBy(e.target.value)}
+          >
+            <option value="idMeal">Sort by latest</option>
+            <option value="strMeal">Sort by name</option>
+          </select>
         </div>
       </div>
 
