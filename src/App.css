@@ -290,17 +290,36 @@ button {
   display: block;
 }
 
-.area-dropdown
-{
-    position: relative;
-    display: inline-block;
+.area-dropdown {
+  position: relative;
+  display: inline-block;
 }
 
 .area-dropdown:hover .dropdown-content {
-    display: block;
-  }
+  display: block;
+}
 
 .ingredient-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 100;
+  max-height: 300px; /* Limit height */
+  overflow-y: auto; /* Scrollable if needed */
+  min-width: 300px; /* Ensure enough space for columns */
+  width: auto; /* Adjust width dynamically */
+}
+
+.ingredient-dropdown:hover .dropdown-content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr)); /* 3 columns */
+  gap: 10px;
+  padding: 10px;
+}
+
+.tag-dropdown .dropdown-content {
     display: none;
     position: absolute;
     background: white;
@@ -311,11 +330,19 @@ button {
     overflow-y: auto; /* Scrollable if needed */
     min-width: 300px; /* Ensure enough space for columns */
     width: auto; /* Adjust width dynamically */
-  }
-  
-  .ingredient-dropdown:hover .dropdown-content {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(100px, 1fr)); /* 3 columns */
-    gap: 10px;
-    padding: 10px;
-  }
+}
+
+.tag-dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.tag-columns {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tag-item {
+  display: block;
+  margin-bottom: 5px;
+}
