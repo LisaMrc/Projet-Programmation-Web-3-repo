@@ -119,17 +119,17 @@ export default function App() {
       <Navbar />
       <Header />
 
-    <div className="filter-container">
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search a meal..."
-      />
-    </div>
+      <div className="filter-container">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search a meal..."
+        />
+      </div>
 
       <div className="filter-container">
-        <div className="category-dropdown">
+        <div className="dropdown category-dropdown">
           <button className="dropdown-button">Category</button>
           <div className="dropdown-content">
             {categories.map((category) => (
@@ -145,7 +145,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="area-dropdown">
+        <div className="dropdown area-dropdown">
           <button className="dropdown-button">Area</button>
           <div className="dropdown-content">
             {areas.map((area) => (
@@ -161,7 +161,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="ingredient-dropdown">
+        <div className="dropdown ingredient-dropdown">
           <button className="dropdown-button">Ingredients</button>
           <div className="dropdown-content">
             {ingredients.map((ingredient) => (
@@ -177,7 +177,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="tag-dropdown">
+        <div className="dropdown tag-dropdown">
           <button className="dropdown-button">Tags</button>
           <div className="dropdown-content">
             {tags.map((tag) => (
@@ -193,9 +193,9 @@ export default function App() {
           </div>
         </div>
 
-        <div id="gallery-options">
+        <div className="dropdown">
           <select
-          className="dropdown-button"
+            className="dropdown-button"
             id="meal-sort"
             value={mealsSortBy}
             onChange={(e) => setMealsSortBy(e.target.value)}

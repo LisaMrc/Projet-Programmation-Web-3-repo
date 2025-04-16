@@ -61,9 +61,18 @@ input {
   white-space: nowrap;
 }
 
-.category-dropdown {
+/* Common Dropdown Styles */
+.dropdown {
   position: relative;
   display: inline-block;
+}
+
+button {
+  border: 0px;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-family: "Quicksand";
+  font-weight: bold;
 }
 
 .dropdown-button {
@@ -72,76 +81,54 @@ input {
   padding: 5px 10px;
   cursor: pointer;
   color: var(--middle-gray);
+  border-radius: 0.5rem;
 }
 
+/* Dropdown Content Base */
 .dropdown-content {
-  display: none;
   position: absolute;
   background: white;
-  border: 1px solid gray;
+  border: 1px solid var(--middle-gray);
   padding: 10px;
+  border-radius: 1rem;
   min-width: 150px;
+  z-index: 100;
+  max-height: 300px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.category-dropdown:hover .dropdown-content {
-  display: block;
+/* Show on hover */
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ingredient Grid */
+.ingredient-dropdown .dropdown-content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  gap: 0.5rem 6rem;
+  min-width: 300px;
+  width: auto;
+}
+
+/* Tag Column */
+.tag-dropdown .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 300px;
 }
 
 .dropdown-content label {
   display: block;
 }
 
-.area-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.area-dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.ingredient-dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  background: white;
-  border: 1px solid #c6c6c6;
-  padding: 10px;
-  z-index: 100;
-  max-height: 300px; /* Limit height */
-  overflow-y: auto; /* Scrollable if needed */
-  min-width: 300px; /* Ensure enough space for columns */
-  width: auto; /* Adjust width dynamically */
-}
-
-.ingredient-dropdown:hover .dropdown-content {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 1fr));
-  gap: 10px;
-  padding: 10px;
-}
-
-.tag-dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-  z-index: 100;
-  max-height: 300px;
-  overflow-y: auto;
-  min-width: 300px;
-  width: auto;
-}
-
-.tag-dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.tag-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
+/* To clean 🚮 */
 select {
   border: 0px;
   border-radius: 0.8rem;
@@ -160,14 +147,6 @@ select {
   font-family: Quicksand;
 }
 
-button {
-  border: 0px;
-  border-radius: 0.8rem;
-  cursor: pointer;
-  font-family: "Quicksand";
-  font-weight: bold;
-}
-
 .button-primary {
   background-color: #e81c57;
   color: white;
@@ -176,21 +155,6 @@ button {
   align-self: stretch;
   padding: 0.8rem;
   font-weight: bold;
-}
-
-.red-button {
-  background-color: #ff0000;
-  color: white;
-  text-transform: uppercase;
-  border: 0px;
-  align-self: stretch;
-  padding: 0.8rem;
-  font-weight: bold;
-  margin-top: 12px;
-}
-
-.button-meal {
-  margin-top: auto;
 }
 
 .button-purple {

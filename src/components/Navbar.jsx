@@ -20,10 +20,10 @@ export default function Navbar
                     <span class="nav-text">Random meals</span>
                     <img src="assets/Icons/repeat.svg" alt="Shuffle Icon"></img>
                 </a>
-                <a href="#" class="nav-item">
+                {/* <a href="#" class="nav-item">
                     <span class="nav-text">Around the world</span>
                     <img src="assets/Icons/map.svg" alt="Map Icon"></img>
-                </a>
+                </a> */}
             </div>
 </nav>
     );

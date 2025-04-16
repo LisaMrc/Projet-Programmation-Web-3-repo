@@ -1,0 +1,49 @@
+h3 {
+  font-family: "Momcake";
+  font-size: 2rem;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  position: relative;
+  padding-top: 4rem;
+}
+
+.button-red {
+  background-color: var(--morfale-red);
+  color: white;
+  border: 0px;
+  align-self: stretch;
+  padding: 0.8rem;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.button-red-inline {
+    background-color: white;
+    border: 1px solid var(--morfale-red);
+    padding: 0.8rem;
+    cursor: pointer;
+    color: var(--morfale-red);
+    border-radius: 0.5rem;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    align-self: stretch;
+  }
+
+.button-blue {
+  background-color: var(--morfale-blue);
+  color: white;
+  border: 0px;
+  align-self: stretch;
+  padding: 0.8rem;
+  font-weight: bold;
+  margin-top: 12px;
+}

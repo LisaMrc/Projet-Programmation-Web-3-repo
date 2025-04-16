@@ -1,5 +1,6 @@
 import { useState } from "react";
 import newsData from "../data/newsData.js";
+import "./NewsSlider.css";
 
 export default function NewsSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,32 +18,26 @@ export default function NewsSlider() {
   };
 
   return (
-    <div>
-      <h2>Dog Center News</h2>
+    <article>
+      <h3>Latest news</h3>
       <div
         style={{
-          backgroundImage: `url(${newsData[currentIndex].pictureUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           padding: "20px",
-          color: "grey",
+          color: "black",
+          borderRadius: "20px",
+          width:"40%",
+          height:"20vh",
+          backgroundColor:"#f3f4f6",
         }}
       >
-        <h3>{newsData[currentIndex].title}</h3>
+        <h4>{newsData[currentIndex].title}</h4>
         <p>{newsData[currentIndex].content}</p>
       </div>
 
       <div>
-        <button onClick={selectPrevious} disabled={currentIndex === 0}>
-          Previous
-        </button>
-        <button
-          onClick={selectNext}
-          disabled={currentIndex === newsData.length - 1}
-        >
-          Next
-        </button>
+        <button onClick={selectPrevious} disabled={currentIndex === 0} className="button-red-inline">Previous</button>
+        <button onClick={selectNext} disabled={currentIndex === newsData.length - 1} className="button-red-inline">Next</button>
       </div>
-    </div>
+    </article>
   );
 }
