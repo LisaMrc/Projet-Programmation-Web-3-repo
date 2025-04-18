@@ -1,8 +1,8 @@
 import "./Display.css";
 import { useParams } from "react-router-dom";
-import MealsData from "../data/MealsData";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import MealsData from "../data/MealsData.js";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function Display() {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export default function Display() {
 
   return (
     <div>
-        <Navbar />
+      <Navbar />
       <div className="meal-container">
         <img
           src={meal.strMealThumb}

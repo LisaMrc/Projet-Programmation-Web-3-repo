@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
-import Display from "./components/Display.jsx";
+import Display from "./pages/Display.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
