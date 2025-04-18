@@ -1,25 +1,14 @@
-import './MealCard.css'
+import "./MealCard.css";
+import { Link } from "react-router-dom";
 
-export default function MealCard
-({ 
-    idMeal,
-    strMeal,
-    strArea,
-    strMealThumb,
-})
-
-{
+export default function MealCard({ idMeal, strMeal, strArea, strMealThumb }) {
   return (
-    <div id="meal-card">
-      <img
-        id="meal-picture"
-        src={strMealThumb}
-        alt={strMeal}
-      />
+    <Link to={`/meal/${idMeal}`} className="meal-card">
+      <img id="meal-picture" src={strMealThumb} alt={strMeal} />
       <div id="meal-description">
         <h3>{strMeal}</h3>
-        <p className="dog-description-line">{strArea}</p>
+        <p>{strArea}</p>
       </div>
-    </div>
+    </Link>
   );
-};
+}
