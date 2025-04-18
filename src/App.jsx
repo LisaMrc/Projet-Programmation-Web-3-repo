@@ -42,6 +42,15 @@ export default function App() {
   );
   const [tags, setTags] = useState([]);
 
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const stored = localStorage.getItem("favorites");
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
+
   useEffect(() => {
     setCategories([...new Set(MealsData.map((meal) => meal.strCategory))]);
     setAreas([...new Set(MealsData.map((meal) => meal.strArea))]);
@@ -65,11 +74,27 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
+    );
+  };
+
+  useEffect(() => {
     localStorage.setItem("search", JSON.stringify(search));
     localStorage.setItem("mealsSortBy", JSON.stringify(mealsSortBy));
-    localStorage.setItem("selectedCategories", JSON.stringify(selectedCategories));
+    localStorage.setItem(
+      "selectedCategories",
+      JSON.stringify(selectedCategories)
+    );
     localStorage.setItem("selectedAreas", JSON.stringify(selectedAreas));
-    localStorage.setItem("selectedIngredients", JSON.stringify(selectedIngredients));
+    localStorage.setItem(
+      "selectedIngredients",
+      JSON.stringify(selectedIngredients)
+    );
     localStorage.setItem("selectedTags", JSON.stringify(selectedTags));
   }, [
     search,
@@ -245,6 +270,8 @@ export default function App() {
             strMeal={meal.strMeal}
             strArea={meal.strArea}
             strMealThumb={meal.strMealThumb}
+            isFavorite={favorites.includes(meal.idMeal)}
+            onToggleFavorite={toggleFavorite}
           />
         ))}
       </div>

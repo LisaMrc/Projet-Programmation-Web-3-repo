@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MealsData from "../data/MealsData.js";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import KitchenTimer from "../components/KitchenTimer";
 
 export default function Display() {
   const { id } = useParams();
@@ -41,6 +42,7 @@ export default function Display() {
         <p className="meal-instructions">{meal.strInstructions}</p>
       </div>
 
+      <KitchenTimer />
       <Footer />
     </div>
   );

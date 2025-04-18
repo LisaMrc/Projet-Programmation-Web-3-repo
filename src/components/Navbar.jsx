@@ -13,7 +13,7 @@ export default function Navbar({}) {
         </a>
       </div>
       <div className="navbar-right">
-        <a href="#" className="nav-item">
+        <a href="/favorites" className="nav-item">
           <span className="nav-text">Favorite recipes</span>
           <img src="../assets/Icons/heart.svg" alt="Heart Icon"></img>
         </a>

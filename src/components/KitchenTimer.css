@@ -1,0 +1,57 @@
+.kitchen-timer {
+  width: 300px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: #fefefe;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.timer-display {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.time-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.time-inputs input {
+  width: 50px;
+  font-size: 1.2em;
+  text-align: center;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.timer-buttons button {
+  font-size: 1em;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.timer-buttons button:first-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.timer-buttons button:last-child {
+  background-color: var(--morfale-red);
+  color: white;
+}
+
+.timer-buttons button:hover {
+  opacity: 0.8;
+}
