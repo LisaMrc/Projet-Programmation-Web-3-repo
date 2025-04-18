@@ -7,28 +7,45 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-export default function App() {
-  const [search, setSearch] = useState("");
-  const [mealsSortBy, setMealsSortBy] = useState("idMeal");
+function getStored(key, fallback) {
+  try {
+    const stored = localStorage.getItem(key);
+    return stored !== null ? JSON.parse(stored) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
 
-  const [selectedCategories, setSelectedCategories] = useState([]);
+export default function App() {
+  const [search, setSearch] = useState(() => getStored("search", ""));
+  const [mealsSortBy, setMealsSortBy] = useState(() =>
+    getStored("mealsSortBy", "idMeal")
+  );
+
+  const [selectedCategories, setSelectedCategories] = useState(() =>
+    getStored("selectedCategories", [])
+  );
   const [categories, setCategories] = useState([]);
 
-  const [selectedAreas, setSelectedAreas] = useState([]);
+  const [selectedAreas, setSelectedAreas] = useState(() =>
+    getStored("selectedAreas", [])
+  );
   const [areas, setAreas] = useState([]);
 
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState(() =>
+    getStored("selectedIngredients", [])
+  );
   const [ingredients, setIngredients] = useState([]);
 
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState(() =>
+    getStored("selectedTags", [])
+  );
   const [tags, setTags] = useState([]);
 
-  // Load unique categories, areas, and ingredients ONCE when the component mounts
   useEffect(() => {
     setCategories([...new Set(MealsData.map((meal) => meal.strCategory))]);
     setAreas([...new Set(MealsData.map((meal) => meal.strArea))]);
 
-    // Extract unique ingredients
     const allIngredients = new Set();
     MealsData.forEach((meal) => {
       for (let i = 1; i <= 20; i++) {
@@ -38,15 +55,30 @@ export default function App() {
     });
     setIngredients([...allIngredients].sort());
 
-    // Extract unique tags
     const allTags = new Set();
     MealsData.forEach((meal) => {
       if (meal.strTags) {
-        meal.strTags.split(",").map((tag) => allTags.add(tag.trim()));
+        meal.strTags.split(",").forEach((tag) => allTags.add(tag.trim()));
       }
     });
     setTags([...allTags].sort());
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("search", JSON.stringify(search));
+    localStorage.setItem("mealsSortBy", JSON.stringify(mealsSortBy));
+    localStorage.setItem("selectedCategories", JSON.stringify(selectedCategories));
+    localStorage.setItem("selectedAreas", JSON.stringify(selectedAreas));
+    localStorage.setItem("selectedIngredients", JSON.stringify(selectedIngredients));
+    localStorage.setItem("selectedTags", JSON.stringify(selectedTags));
+  }, [
+    search,
+    mealsSortBy,
+    selectedCategories,
+    selectedAreas,
+    selectedIngredients,
+    selectedTags,
+  ]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
@@ -76,7 +108,6 @@ export default function App() {
     );
   };
 
-  // Filter and sort meals
   const filteredMealsData = useMemo(() => {
     return MealsData.filter((meal) => {
       const mealIngredients = [];
@@ -206,7 +237,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Meal Gallery */}
       <div id="meal-gallery">
         {filteredMealsData.map((meal) => (
           <MealCard
