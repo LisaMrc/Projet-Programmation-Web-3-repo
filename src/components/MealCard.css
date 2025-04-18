@@ -1,6 +1,6 @@
 #meal-card {
   width: 200px;
-  height: fit-content;
+  height: 250px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

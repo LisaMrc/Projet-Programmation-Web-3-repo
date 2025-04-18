@@ -81,7 +81,6 @@ input {
   white-space: nowrap;
 }
 
-/* Common Dropdown Styles */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -103,7 +102,6 @@ button {
   border-radius: 0.5rem;
 }
 
-/* Dropdown Content Base */
 .dropdown-content {
   position: absolute;
   background: white;
@@ -124,7 +122,6 @@ button {
   visibility: visible;
 }
 
-/* Ingredient Dropdown */
 .ingredient-dropdown .dropdown-content {
   display: grid;
   grid-template-columns: repeat(3, minmax(100px, 1fr));
@@ -135,7 +132,6 @@ button {
   box-sizing: border-box;
 }
 
-/* Tag Dropdown stays in column */
 .tag-dropdown .dropdown-content {
   display: flex;
   flex-direction: column;
@@ -152,7 +148,6 @@ button {
   word-break: break-word;
 }
 
-/* Responsive Styles */
 @media screen and (max-width: 1024px) {
   main,
   .head {
