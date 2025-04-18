@@ -175,7 +175,7 @@ export default function App() {
       <Navbar />
       <Header />
 
-      <div className="filter-container">
+      <div className="search">
         <input
           type="text"
           value={search}
