@@ -9,12 +9,12 @@
 @font-face {
   font-family: Quicksand;
   src: local(Quicksand),
-    url("../assets/Fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
+    url("/assets/Fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
 }
 
 @font-face {
   font-family: Momcake-Bold;
-  src: local(Momcake-Bold), url("../assets/Fonts/Momcake-Bold.otf");
+  src: local(Momcake-Bold), url("/assets/Fonts/Momcake-Bold.otf");
 }
 
 body {
